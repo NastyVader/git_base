@@ -1,0 +1,11 @@
+@keyframes animated_div
+{
+100% {transform: rotate(-360deg);left:0px;}
+}
+
+#index_welcome{
+    /* animation:animated_div 1s; */
+}
+#nav{
+    box-shadow: 0px 4px 15px 3px black;
+}

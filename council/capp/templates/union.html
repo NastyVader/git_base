@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+<div id='index_welcome' class='p-5 mb-4 rounded-3 justify-content-center' style="background-color: #E8DDCB;">
+    <h1>Unions List:</h1>
+</div>
+
+
+    {% if union %}
+    {% for i in union %}
+    <div class="h-auto p-5 text-white bg-dark rounded-3">
+    
+    <h2>Union Name: <u>{{i.UNION_NAME}}</u></h2>
+    <table class="table table-striped table-hover" style="background-color: #383838;">
+        <tbody>
+            <tr>
+                <td class="text-white">Union ID</td>
+                <td class="text-white">{{i.UNION_ID}}</td>
+            </tr>
+            <tr>
+                <td class="text-white">Union Head</td>
+                <td class="text-white">{{i.head}}</td>
+            </tr>
+          {% for j in candidate %}
+          {% if i.UNION_NAME == j.U_NAME %}
+          <tr>
+                {% if j.USN == i.head %}
+                {% else %}
+                <td class="text-white">Member</td>
+                <td class="text-white">{{j.USN}}</td>
+                {% endif %}
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="h-auto p-5 text-white bg-dark rounded-3">
+        <h2>No Unions Created Yet</h2>
+    </div>
+
+    {% endif %}
+    
+
+
+
+{% endblock %}

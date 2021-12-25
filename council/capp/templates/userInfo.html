@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+<h1>{{std.user}}</h1>
+<h1>{{username}}</h1>
+{% if std %}
+<div class='p-5 mb-4 rounded-3 ' style="background-color: #E8DDCB;">
+<h1>Your Profile:</h1>
+</div>
+        
+<div class="h-100 p-5 border rounded-3" style="background-color: #CDB380;">        
+  <table class="table border-dark table-hover fs-4">
+    <tbody>
+      <tr>
+        <td>ID:</td>
+        <td>{{std.S_ID}}</td>
+      </tr>
+      <tr>
+        <td>Name:</td>
+        <td>{{std.S_NAME}}</td>
+      </tr>
+      <tr>
+        <td>Date Of Birth:</td>
+        <td>{{std.S_DOB}}</td>
+      </tr>
+      <tr>
+        <td>Semester:</td>
+        <td>{{std.S_SEM}}</td>
+      </tr>
+      <tr>
+        <td>Section:</td>
+        <td>{{std.S_SEC}}</td>
+      </tr>
+      <tr>
+        <td>Depratment:</td>
+        <td>{{std.S_DEP}}</td>
+      </tr>
+      <tr>
+        <td>Picture:</td>
+        <td></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+{% endif %}
+
+{% if user.is_superuser %}
+<div class='p-5 mb-4 rounded-3 ' style="background-color: #E8DDCB;">
+  <h1>Your Profile:</h1>
+  <h3>Not a Student</h3>
+  </div>
+{% endif %}
+
+{% endblock %}

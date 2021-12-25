@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+<div class='p-5 mb-4 rounded-3 ' style="background-color: #E8DDCB;">
+        {% if r == 1 %}
+        <h3>Invalid Details</h3>
+        {% endif %}
+        {% if r == 2 %}
+        <h3>Congrats!! <br> Union Form Created!!</h3>
+        {% endif %}
+
+</div>
+
+
+{% endblock %}

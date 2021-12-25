@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+<div id='index_welcome' class=' rounded-3 ' style="background-color: #E8DDCB;width: 50%;margin-left: 25%;margin-right: 50%;padding-top: 48px;padding-bottom: 80px;">
+    {% if user.is_authenticated %}
+        <h1 class="text-center" style="margin: 0 auto;">Logged In as: {{user.username}}</h1>
+    {% else %}
+        
+        <form method="POST" action="{% url 'capp:userLogin' %}" class="text-center" style="width: 40%;margin: 0 auto; ">
+            {% csrf_token %}
+            <h1><strong>Login</strong></h1>
+            <br><br><br><br>
+            <div class="mb-3 ">
+                <label for="username " class="form-label">Username:</label>
+                <input type="text" name="username" class="form-control" placeholder='Enter your username'>
+            </div>
+            <div  class="mb-3 ">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" name='password' class="form-control">
+            </div>
+            <button class='btn btn-success '>Log In</button>
+        </form>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}

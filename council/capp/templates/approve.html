@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+<div id='index_welcome' class='p-5 mb-4 rounded-3 justify-content-center' style="background-color: #E8DDCB;">
+    <h1>Union forms not approved:</h1>
+</div>
+
+<div class="h-100 p-5 border text-white rounded-3" style="background-color: #036564;">
+    
+    
+    <table class="table table-hover text-white">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Head</th>
+            <th scope="col">Member</th>
+            <th scope="col">Member</th>
+            <th scope="col">Member</th>
+            <th scope="col">Member</th>
+            <th scope="col">Member</th>
+            <th scope="col"> </th>
+          </tr>
+        </thead>
+       <tbody> 
+          {% for i in unions %}
+          <tr>
+            <td>{{i.UNION_ID}}</td>
+            <td>{{i.UNION_NAME}}</td>
+            <td>{{i.head}}</td>
+            <td>{{i.M1}}</td>
+            <td>{{i.M2}}</td>
+            <td>{{i.M3}}</td>
+            <td>{{i.M4}}</td>
+            <td>{{i.M5}}</td>
+            <td><form action="{% url 'capp:approve' %}" method="POST">
+                {% csrf_token %}
+                <input  name="union_id" class="visually-hidden" value='{{i.UNION_ID}}'>
+                <input  name="union_name" class="visually-hidden" value='{{i.UNION_NAME}}'>
+                <input  name="head" class="visually-hidden" value='{{i.head}}'>
+                <input  name="m1" class="visually-hidden" value='{{i.M1}}'>
+                <input  name="m2" class="visually-hidden" value='{{i.M2}}'>
+                <input  name="m3" class="visually-hidden" value='{{i.M3}}'>
+                <input  name="m4" class="visually-hidden" value='{{i.M4}}'>
+                <input  name="m5" class="visually-hidden" value='{{i.M5}}'>
+                <button class="btn btn-outline-light" >Approve</button>
+            </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>    
+      </table>
+
+
+</div>
+{% endblock %}

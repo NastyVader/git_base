@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+{% block body_block %}
+
+    <div id='index_welcome' class='p-5 mb-4 rounded-3 justify-content-center' style="background-color: #E8DDCB;">
+        <h1>Register your Union:</h1>
+    </div>
+    <div class="h-100 p-5 border rounded-3" style="background-color: #CDB380;">
+        
+        <form method="POST" class="" action="{% url 'capp:createUnion' %}">
+            {% csrf_token %}
+            <div class="form-group w-25 p-3">
+              Head of the Union:
+              {% render_field form.head class="form-control" placeholder="Union ID" type="text" %}
+            </div>
+            <div class="form-group w-25 p-3">
+              {% render_field form.UNION_ID class="form-control" placeholder="Union ID" type="text" %}
+            </div>
+            <div class="form-group w-25 p-3">
+              {% render_field form.UNION_NAME class="form-control" placeholder="Union Name" type="text" %}
+            </div>
+            <div class="form-group w-25 p-3">
+              {% render_field form.M1 class="form-control" placeholder="Member USN" type="text" %}
+            </div>
+            <div class="form-group w-25 p-3">
+              {% render_field form.M2 class="form-control" placeholder="Member USN" type="text" %}
+            </div>
+            <div class="form-group w-25 p-3">
+              {% render_field form.M3 class="form-control" placeholder="Member USN" type="text" %}
+            </div>
+            <div class="form-group w-25 p-3">
+              {% render_field form.M4 class="form-control" placeholder="Member USN" type="text" %}
+            </div>
+            <div class="form-group w-25 p-3">
+              {% render_field form.M5 class="form-control" placeholder="Member Name" type="text" %}
+            </div>
+            <button class='btn btn-success '>Register</button>
+            
+            
+
+        </form>
+    
+    </div>
+
+{% endblock %}

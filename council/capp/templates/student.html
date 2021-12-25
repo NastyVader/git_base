@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+<div id='index_welcome' class='p-5 mb-4 rounded-3 justify-content-center' style="background-color: #E8DDCB;">
+    <h1>Student List:</h1> 
+</div>
+
+<div class="p-5 mb-4 rounded-3 text-center text-light" style="background-color: #036564;">
+
+    <table class="table table-hover table-striped text-white">
+
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">USN</th>
+                <th scope="col">Sem</th>
+                <th scope="col">Sec</th>
+                <th scope="col">Dept</th>
+                <th scope="col">DOB</th>
+            </tr>
+            {% for i in student %}
+            <tr>
+                <th scope="col">{{i.S_NAME}}</th>
+                <td>{{i.S_ID}}</td>
+                <td>{{i.S_SEM}}</td>
+                <td>{{i.S_SEC}}</td>
+                <td>{{i.S_DEP}}</td>
+                <td>{{i.S_DOB}}</td>
+            </tr>
+            {% endfor %}
+        </thead>
+
+
+    </table>
+
+</div>
+
+{% endblock %}
