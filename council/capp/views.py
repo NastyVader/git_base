@@ -27,7 +27,7 @@ def createUnion(request):
             return render(request, 'invalidlogin.html',{'r':1})
     else:
         form = UnionRegisteration()
-        return render(request, 'createunion.html',{'form':form})
+        return render(request, 'createUnion.html',{'form':form})
 
 def userLogin(request):
 
