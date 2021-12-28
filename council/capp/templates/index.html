@@ -2,17 +2,13 @@
 
 {% block body_block %}
 
-<!-- <div id='index_welcome' class='text-center p-4 mb-4 rounded-3   ' style="background-color: #E8DDCB;font-size: 60px;">
-  Student Council Voting System
-</div> -->
 
 <div class="row align-items-md-stretch">
     <div class="col-md-8">
-      <div class="h-100 mb-4 p-5 text-white rounded-3" style="background-color: #036564;">
+      <div class="h-100 mb-4 p-5 text-dark rounded-3" style="background-color: #E8DDCB;">
         <h2>Rules and Regulations:</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et minima pariatur veritatis voluptatum obcaecati totam nobis laborum voluptates fugit.</p>
-      <a href="#"><button class="btn btn-outline-light" type="button">Voting</button></a>
-      <a href="#"><button class="btn btn-outline-light" type="button">Creating Unions</button></a>
+      <a href="{% url 'capp:rules' %}"><button class="btn btn-outline-primary" type="button">Rules</button></a>
       </div>
       
     </div>
@@ -25,14 +21,39 @@
     </div>
     <div class="col-md-12">
       <div class="p-5 mt-4 text-white bg-dark rounded-3">
-        <h2>Create your own Union {{vote}}</h2>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus sint nesciunt quis. Asperiores, odit consectetur voluptate dolore expedita ullam aperiam, eos, id assumenda quam unde hic omnis rerum nihil rem.</p>
-        {% if user.is_authenticated %}
-        <a href="{% url 'capp:createUnion' %}"><button class="btn btn-outline-info" type="button">Create Union</button></a>
-        {% else %}
-        <a href="{% url 'capp:userLogin' %}"><button class="btn btn-outline-info" type="button">Create Union</button></a>
+        {% if var %}
+          {% if user.is_superuser %}
+          <div>
+            <h2>Check Vote Count</h2>
+            <p>Check how many votes have each of the unions have attained:</p>
+            <br>
+            <a href="{% url 'capp:viewVote' %}"><button class="btn btn-outline-info" type="button">Live Results</button></a>
+            
+          </div>
+          {%else%}
+            <div class="text-center m-5">
+              <h2>Vote Now!!!</h2>
+              <br><br>
+              {% if user.is_authenticated %}
+              <a href="{% url 'capp:vote' %}"><button class="btn btn-outline-info" type="button">Vote</button></a>
+              {% else %}
+              <a href="{% url 'capp:userLogin' %}"><button class="btn btn-outline-info" type="button">Vote</button></a>
+              {% endif %}
+              
+            </div>
         {% endif %}
-      </div>
+        
+        {% else %}
+        <div >
+          <h2>Create your own Union</h2>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus sint nesciunt quis. Asperiores, odit consectetur voluptate dolore expedita ullam aperiam, eos, id assumenda quam unde hic omnis rerum nihil rem.</p>
+          {% if user.is_authenticated %}
+          <a href="{% url 'capp:createUnion' %}"><button class="btn btn-outline-info" type="button">Create Union</button></a>
+          {% else %}
+          <a href="{% url 'capp:userLogin' %}"><button class="btn btn-outline-info" type="button">Create Union</button></a>
+          {% endif %}
+        </div>
+        {% endif %}
     </div>
 
     {% if user.is_superuser %}
@@ -44,6 +65,7 @@
       </div>
     </div>
     {% endif %}
+    
 
 </div>
 

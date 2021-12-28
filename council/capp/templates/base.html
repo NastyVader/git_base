@@ -33,6 +33,7 @@
         </ul>
         <ul class="navbar-nav">
             <li><a class='nav-link active mx-2 link-light' href="{% url 'capp:index' %}">Home</a></li>
+            <li><a class='nav-link active mx-2 link-light' href="{% url 'capp:rules' %}">Rules</a></li>
             <li><a class='nav-link active mx-2 link-light' href="{% url 'capp:unionView' %}"> Unions</a></li>
             {% if user.is_superuser or user.is_staff %}
             <li><a class='nav-link active mx-2 link-light' href="{% url 'capp:students' %}"> Students</a></li>
@@ -53,9 +54,25 @@
 
     <nav class="navbar fixed-bottom navbar-dark text-light p-1 justify-content-center" style="background-color: #033649;">
         <div class="">
-            {% if vote %}
-                Vote Now:
-                <a href="{% url '#' %}"><button class="btn btn-outline-success btn-sm" type="button">VOTE NOW</button></a>
+
+
+            {% if var %} 
+                
+                {% if user.is_superuser %}
+                Check Votes:
+                <a href="{% url 'capp:viewVote' %}"><button class="btn btn-outline-success btn-sm" type="button">Votes</button></a>
+                {% else %}
+
+                {% if user.is_authenticated %}
+                Vote Now!!!
+                <a href="{% url 'capp:vote' %}"><button class="btn btn-outline-success btn-sm" type="button">Vote</button></a>
+                
+                {% else %}
+                Vote Now!!!
+                    <a href="{% url 'capp:userLogin' %}"><button class="btn btn-outline-success btn-sm" type="button">Vote</button></a>
+                {% endif %}
+                {% endif %}
+
             {% else %}
                 {% if user.is_superuser or user.is_staff %}
                 Approve Unions:

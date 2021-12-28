@@ -2,7 +2,10 @@ from django import template
 
 register = template.Library()
 
-@register.simple_tag(name='trial')
-def trial(value):
+i=1
+@register.simple_tag
+def trial():
+    if i==1:return i
 
-    return '1'
+
+

@@ -168,4 +168,12 @@ def students(request):
     z = Candidate.objects.order_by('USN')
     return render(request, 'student.html', {'student':x, 'union':y, 'cand':z})
 
+def rules(request):
+    return render(request, 'rules.html')
+
+def vote(request):
+    return render(request, 'vote.html')
+
+def viewVote(request):
+    return render(request, 'viewVote.html')
 

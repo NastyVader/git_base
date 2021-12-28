@@ -2,7 +2,7 @@
 
 {% block body_block %}
 
-<div id='index_welcome' class=' rounded-3 ' style="background-color: #E8DDCB;width: 50%;margin-left: 25%;margin-right: 50%;padding-top: 48px;padding-bottom: 80px;">
+<div class=' rounded-3 text-center ' style="background-color: #E8DDCB;width: 50%;margin-left: 25%;margin-right: 50%;padding-top: 48px;padding-bottom: 80px;">
     {% if user.is_authenticated %}
         <h1 class="text-center" style="margin: 0 auto;">Logged In as: {{user.username}}</h1>
     {% else %}
