@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 from django.core.validators import RegexValidator
+from django.db.models.fields.related import OneToOneField
 
 # Create your models here.
 
@@ -75,3 +76,7 @@ class Candidate(models.Model):
     def __str__(self):
         return str(self.USN)
 
+class Vote(models.Model):
+
+    V_ID = OneToOneField(StudentProfile, on_delete=models.CASCADE)
+    U_NAME= models.CharField(max_length=25)

@@ -7,4 +7,5 @@ admin.site.register(StudentProfile)
 admin.site.register(Union)
 admin.site.register(UnionForm)
 admin.site.register(Candidate)
+admin.site.register(Vote)
 

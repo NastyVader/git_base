@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from .models import Candidate, StudentProfile
+from .models import Candidate, StudentProfile, Union, UnionForm, Vote
 from django.contrib.auth.models import User
-from .models import Union, UnionForm
-from .forms import UnionRegisteration
+from .forms import UnionRegisteration, VoteForm
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
 
@@ -171,8 +170,10 @@ def students(request):
 def rules(request):
     return render(request, 'rules.html')
 
+@login_required
 def vote(request):
-    return render(request, 'vote.html')
+    form = VoteForm()
+    return render(request, 'vote.html', {'form':form})
 
 def viewVote(request):
     return render(request, 'viewVote.html')
