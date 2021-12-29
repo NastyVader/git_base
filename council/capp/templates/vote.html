@@ -12,20 +12,41 @@
 
 <div class="h-100 mb-4 p-5 text-dark rounded-3" style="background-color: #E8DDCB;">
 
-    <form method="POST" class="" action="{% url 'capp:vote' %}">
-        {% csrf_token %}
-        <div class="form-group w-25 p-3">
-          Head of the Union:
-          {% render_field form.V_ID class="form-control" placeholder="USN" type="text" %}
-        </div>
-        <div class="form-group w-25 p-3">
-          {% render_field form.U_NAME class="form-control" placeholder="Union Name" type="text" %}
-        </div>
-        <button class='btn btn-success ms-3 '>Register</button>
-        
-        
+  <table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th class=" ">Union ID</th>
+            <th class=" ">Union Name</th>
+            <th class=" ">Union Head</th>
+            <th class=" ">Vote</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          {% for i in union %}
+          <td class=" ">{{i.UNION_ID}}</td>
+          <td class=" ">{{i.UNION_NAME}}</td>
+          <td class=" ">
+            {% for j in std %}
+            {% if i.head|stringformat:'s' == j.S_ID|stringformat:'s' %}
+              {{j.S_NAME}}
+            {% endif %}
+            {% endfor %} 
+          </td>
+          <td class=" ">
+            <form action="{% url 'capp:vote' %}" method="POST">
+              {% csrf_token %}
+              <input  name="union_name" class="visually-hidden" value='{{i.UNION_NAME}}'>
+              <button class="btn btn-outline-primary" >Vote</button>
+            </form>
+          </td>
+          {% endfor %}
+        </tr>
+    </tbody>
+  </table>
 
-    </form>
+        
+        
 
 </div>
 

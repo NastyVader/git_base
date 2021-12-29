@@ -172,9 +172,37 @@ def rules(request):
 
 @login_required
 def vote(request):
-    form = VoteForm()
-    return render(request, 'vote.html', {'form':form})
+
+    user1 = request.user
+    std = StudentProfile.objects.get(user=user1)
+    try: Vote.objects.get(V_ID=std)
+    except:
+
+        if request.method == 'POST':
+            uname = request.POST.get('union_name')
+            
+            v = Vote(V_ID=std, U_NAME=uname)
+            v.save()
+            return render(request, 'voteDone.html')  
+
+        u = Union.objects.order_by('UNION_ID')
+        stdList = StudentProfile.objects.order_by('S_ID')
+        return render(request, 'vote.html', {'union':u,'std':stdList})
+    
+    else:
+        return render(request, 'voteDone.html')
+         
+        
 
 def viewVote(request):
-    return render(request, 'viewVote.html')
+    
+    from collections import defaultdict
+    voteObj = Vote.objects.filter()
+    voteDic = defaultdict(lambda: 0)
+    for i in voteObj:
+        print(i.U_NAME)
+        voteDic[str(i.U_NAME)] += 1
+        print (voteDic[str(i.U_NAME)])
+    dic = dict(voteDic)
+    return render(request, 'viewVote.html', {'count':dic})
 

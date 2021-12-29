@@ -80,3 +80,6 @@ class Vote(models.Model):
 
     V_ID = OneToOneField(StudentProfile, on_delete=models.CASCADE)
     U_NAME= models.CharField(max_length=25)
+
+    def __str__(self):
+        return str(self.V_ID)
